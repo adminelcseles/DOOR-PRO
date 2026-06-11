@@ -705,41 +705,7 @@ function doPrint(){
       // Build HTML color boxes (bypass SVG fill rendering issues)
       const _bs = 'display:inline-block;width:14px;height:14px;border:1.5px solid #333;-webkit-print-color-adjust:exact;print-color-adjust:exact;flex-shrink:0;';
       let boxHTML = '';
-      if(dv.type==='t1'){
-        const bx1=dv.boxes||{LR:true,LY:true,RY:true,RR:true};
-        const lBoxes = [
-          bx1.LR!==false ? '<span style="'+_bs+'background:#dd1111;"></span>' : '',
-          bx1.LY!==false ? '<span style="'+_bs+'background:#f5d800;"></span>' : ''
-        ].join('');
-        const rBoxes = [
-          bx1.RY!==false ? '<span style="'+_bs+'background:#f5d800;"></span>' : '',
-          bx1.RR!==false ? '<span style="'+_bs+'background:#dd1111;"></span>' : ''
-        ].join('');
-        if(lBoxes||rBoxes){
-          boxHTML = '<div style="position:absolute;bottom:14%;left:0;right:0;display:flex;align-items:flex-end;pointer-events:none;-webkit-print-color-adjust:exact;print-color-adjust:exact;">'
-            + '<div style="margin-left:23%;display:flex;gap:1px;">'+lBoxes+'</div>'
-            + '<div style="flex:1;"></div>'
-            + '<div style="margin-right:17%;display:flex;gap:1px;">'+rBoxes+'</div>'
-            + '</div>';
-        }
-      } else if(dv.type==='t2'){
-        const bx2=dv.boxes||{LO:true,LB:true,RB:true,RO:true};
-        const lBoxes = [
-          bx2.LO!==false ? '<span style="'+_bs+'background:#ff8c00;"></span>' : '',
-          bx2.LB!==false ? '<span style="'+_bs+'background:#00bfff;"></span>' : ''
-        ].join('');
-        const rBoxes = [
-          bx2.RB!==false ? '<span style="'+_bs+'background:#00bfff;"></span>' : '',
-          bx2.RO!==false ? '<span style="'+_bs+'background:#ff8c00;"></span>' : ''
-        ].join('');
-        if(lBoxes||rBoxes){
-          boxHTML = '<div style="position:absolute;bottom:14%;left:0;right:0;display:flex;align-items:flex-end;pointer-events:none;-webkit-print-color-adjust:exact;print-color-adjust:exact;">'
-            + '<div style="margin-left:26%;display:flex;gap:1px;">'+lBoxes+'</div>'
-            + '<div style="flex:1;"></div>'
-            + '<div style="margin-right:20%;display:flex;gap:1px;">'+rBoxes+'</div>'
-            + '</div>';
-        }
-      }
+      // boxes are rendered directly in svgFinal SVG rects — no HTML overlay needed
 
       return '<div class="pg1-card card ' + (lCls==='lblwg'?'twg':lCls==='lbl1'?'t1':'t2') + '" style="width:95mm;height:' + cardH + 'mm;box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column;padding:1.5mm 2mm 2mm 2mm;border-radius:4px;border:1.5px solid #ccd;background:white;">'
         + '<div style="flex:0 0 auto;overflow:hidden;margin-bottom:2px;">'
