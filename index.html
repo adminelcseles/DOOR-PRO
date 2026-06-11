@@ -609,10 +609,8 @@ function doPrint(){
           </div>
         </div>` : ''}
         `;
-      const cLR2=bx1.LR!==false?'#dd1111':'white', cLY2=bx1.LY!==false?'#f5d800':'white';
-      const cRY2=bx1.RY!==false?'#f5d800':'white', cRR2=bx1.RR!==false?'#dd1111':'white';
-      const sLR2=bx1.LR!==false?'#111':'white', sLY2=bx1.LY!==false?'#111':'white';
-      const sRY2=bx1.RY!==false?'#111':'white', sRR2=bx1.RR!==false?'#111':'white';
+      const cLR2=bx1.LR!==false?'#dd1111':null, cLY2=bx1.LY!==false?'#f5d800':null;
+      const cRY2=bx1.RY!==false?'#f5d800':null, cRR2=bx1.RR!==false?'#dd1111':null;
       svgHTML=`<svg viewBox="0 0 580 490" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
         <defs>
           <marker id="ar${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="red" stroke-width="1.8"/></marker>
@@ -623,10 +621,10 @@ function doPrint(){
         <text x="210" y="67" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="24" fill="#222">L</text>
         <circle cx="420" cy="58" r="30" stroke="black" stroke-width="3" fill="${mR}"/>
         <text x="420" y="67" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="24" fill="red">R</text>
-        <rect x="132" y="295" width="38" height="35" fill="${cLR2}" stroke="${sLR2}" stroke-width="2" style="fill:${cLR2};stroke:${sLR2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
-        <rect x="170" y="295" width="38" height="35" fill="${cLY2}" stroke="${sLY2}" stroke-width="2" style="fill:${cLY2};stroke:${sLY2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
-        <rect x="422" y="295" width="38" height="35" fill="${cRY2}" stroke="${sRY2}" stroke-width="2" style="fill:${cRY2};stroke:${sRY2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
-        <rect x="460" y="295" width="38" height="35" fill="${cRR2}" stroke="${sRR2}" stroke-width="2" style="fill:${cRR2};stroke:${sRR2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
+        ${cLR2?`<rect x="132" y="295" width="38" height="35" fill="${cLR2}" stroke="#111" stroke-width="2" style="fill:${cLR2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
+        ${cLY2?`<rect x="170" y="295" width="38" height="35" fill="${cLY2}" stroke="#111" stroke-width="2" style="fill:${cLY2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
+        ${cRY2?`<rect x="422" y="295" width="38" height="35" fill="${cRY2}" stroke="#111" stroke-width="2" style="fill:${cRY2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
+        ${cRR2?`<rect x="460" y="295" width="38" height="35" fill="${cRR2}" stroke="#111" stroke-width="2" style="fill:${cRR2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
         <line x1="128" y1="20" x2="128" y2="330" stroke="blue" stroke-width="2.5" marker-start="url(#ab${id})" marker-end="url(#ab${id})"/>
         <text x="104" y="190" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="blue" transform="rotate(-90 104 190)">Base Height: ${frac(dv.bh)}</text>
         <line x1="68" y1="20" x2="68" y2="380" stroke="red" stroke-width="2.5" marker-start="url(#ar${id})" marker-end="url(#ar${id})"/>
@@ -662,10 +660,8 @@ function doPrint(){
           ${dv.sqftPrice2?`<div style="display:flex;flex-direction:column;gap:1px"><label style="font-size:11px;font-weight:700;color:#444;text-transform:uppercase">Price/sq ft</label><div style="font-size:13px;font-weight:700;color:#1a2340;padding:2px 4px;background:#eef;border-radius:2px;border:1px solid #99b">Rs. ${Math.round(dv.sqftPrice2).toLocaleString()}/=</div></div>`:''}
         </div>`:''}
         `;
-      const cLO2=bx2.LO!==false?'#ff8c00':'white', cLB2=bx2.LB!==false?'#00bfff':'white';
-      const cRB2=bx2.RB!==false?'#00bfff':'white', cRO2=bx2.RO!==false?'#ff8c00':'white';
-      const sLO2=bx2.LO!==false?'#111':'white', sLB2=bx2.LB!==false?'#111':'white';
-      const sRB2=bx2.RB!==false?'#111':'white', sRO2=bx2.RO!==false?'#111':'white';
+      const cLO2=bx2.LO!==false?'#ff8c00':null, cLB2=bx2.LB!==false?'#00bfff':null;
+      const cRB2=bx2.RB!==false?'#00bfff':null, cRO2=bx2.RO!==false?'#ff8c00':null;
       svgHTML=`<svg viewBox="0 0 580 490" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
         <defs>
           <marker id="atw${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#1a1aff" stroke-width="1.8"/></marker>
@@ -676,10 +672,10 @@ function doPrint(){
         <line x1="315" y1="20" x2="315" y2="100" stroke="#111" stroke-width="3"/>
         <text x="242" y="75" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="46" fill="#1a1aff">${lL}</text>
         <text x="388" y="75" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="46" fill="#cc0000">${rL}</text>
-        <rect x="132" y="295" width="38" height="35" fill="${cLO2}" stroke="${sLO2}" stroke-width="2" style="fill:${cLO2};stroke:${sLO2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
-        <rect x="170" y="295" width="38" height="35" fill="${cLB2}" stroke="${sLB2}" stroke-width="2" style="fill:${cLB2};stroke:${sLB2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
-        <rect x="422" y="295" width="38" height="35" fill="${cRB2}" stroke="${sRB2}" stroke-width="2" style="fill:${cRB2};stroke:${sRB2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
-        <rect x="460" y="295" width="38" height="35" fill="${cRO2}" stroke="${sRO2}" stroke-width="2" style="fill:${cRO2};stroke:${sRO2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
+        ${cLO2?`<rect x="132" y="295" width="38" height="35" fill="${cLO2}" stroke="#111" stroke-width="2" style="fill:${cLO2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
+        ${cLB2?`<rect x="170" y="295" width="38" height="35" fill="${cLB2}" stroke="#111" stroke-width="2" style="fill:${cLB2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
+        ${cRB2?`<rect x="422" y="295" width="38" height="35" fill="${cRB2}" stroke="#111" stroke-width="2" style="fill:${cRB2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
+        ${cRO2?`<rect x="460" y="295" width="38" height="35" fill="${cRO2}" stroke="#111" stroke-width="2" style="fill:${cRO2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
         <line x1="128" y1="20" x2="128" y2="330" stroke="#8b0000" stroke-width="2.5" marker-start="url(#abr${id})" marker-end="url(#abr${id})"/>
         <text x="104" y="190" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#8b0000" transform="rotate(-90 104 190)">BASE HEIGHT: ${frac(dv.bh)}</text>
         <line x1="68" y1="20" x2="68" y2="380" stroke="#1a1aff" stroke-width="2.5" marker-start="url(#atw${id})" marker-end="url(#atw${id})"/>
