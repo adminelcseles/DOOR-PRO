@@ -121,9 +121,10 @@ body{font-family:Arial,sans-serif;background:#eef2f7;min-height:100vh;padding:14
 ═══════════════════════════════════════════ */
 .box-inactive{display:none!important;visibility:hidden!important;opacity:0!important}
 @media print{
-  .box-inactive{display:none!important;visibility:hidden!important;opacity:0!important}
+  .box-inactive{display:none!important;visibility:hidden!important;opacity:0!important;width:0!important;height:0!important}
   @page{size:A4 portrait;margin:5mm}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  svg rect.box-inactive,rect.box-inactive{display:none!important;visibility:hidden!important;opacity:0!important;fill:transparent!important;stroke:transparent!important}
   svg rect,svg line,svg circle,svg path,svg text{color-adjust:exact!important;-webkit-print-color-adjust:exact!important}
   svg rect[display="none"],svg rect[style*="display: none"],svg rect[style*="display:none"]{display:none!important;visibility:hidden!important}
   body{background:white!important;padding:0!important;margin:0!important;display:block!important;width:200mm!important}
@@ -1380,14 +1381,23 @@ function d1Box(id,key){
   const d=doors.find(x=>x.id===id);d.boxes[key]=!d.boxes[key];
   document.getElementById('d1-b'+key+'-'+id).classList.toggle('active',d.boxes[key]);
   const el=document.getElementById('d1'+key+'-'+id);
+  const colors={'LR':'#dd1111','LY':'#f5d800','RY':'#f5d800','RR':'#dd1111'};
   if(d.boxes[key]){
     el.classList.remove('box-inactive');
     el.removeAttribute('display');
-    el.style.display='inline';
+    el.style.cssText='display:inline';
+    el.setAttribute('fill',colors[key]);
+    el.setAttribute('stroke','#111');
+    el.style.fill=colors[key];
+    el.style.stroke='#111';
   } else {
     el.classList.add('box-inactive');
     el.setAttribute('display','none');
-    el.style.display='none';
+    el.style.cssText='display:none!important;visibility:hidden;fill:white;stroke:white;opacity:0';
+    el.setAttribute('fill','white');
+    el.setAttribute('stroke','white');
+    el.setAttribute('fill-opacity','0');
+    el.setAttribute('stroke-opacity','0');
   }
 }
 function d1Update(id){
@@ -1506,14 +1516,23 @@ function d2Box(id,key){
   const d=doors.find(x=>x.id===id);d.boxes[key]=!d.boxes[key];
   document.getElementById('d2-b'+key+'-'+id).classList.toggle('active',d.boxes[key]);
   const el=document.getElementById('d2'+key+'-'+id);
+  const colors={'LO':'#ff8c00','LB':'#00bfff','RB':'#00bfff','RO':'#ff8c00'};
   if(d.boxes[key]){
     el.classList.remove('box-inactive');
     el.removeAttribute('display');
-    el.style.display='inline';
+    el.style.cssText='display:inline';
+    el.setAttribute('fill',colors[key]);
+    el.setAttribute('stroke','#111');
+    el.style.fill=colors[key];
+    el.style.stroke='#111';
   } else {
     el.classList.add('box-inactive');
     el.setAttribute('display','none');
-    el.style.display='none';
+    el.style.cssText='display:none!important;visibility:hidden;fill:white;stroke:white;opacity:0';
+    el.setAttribute('fill','white');
+    el.setAttribute('stroke','white');
+    el.setAttribute('fill-opacity','0');
+    el.setAttribute('stroke-opacity','0');
   }
 }
 function d2Update(id){
