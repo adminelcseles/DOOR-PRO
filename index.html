@@ -119,14 +119,10 @@ body{font-family:Arial,sans-serif;background:#eef2f7;min-height:100vh;padding:14
    PAGE 2+: 8 doors in 4×2 grid
             each door: (287-3×2mm)/4 = 69mm tall, ~99mm wide
 ═══════════════════════════════════════════ */
-.box-inactive{display:none!important;visibility:hidden!important;opacity:0!important}
 @media print{
-  .box-inactive{display:none!important;visibility:hidden!important;opacity:0!important;width:0!important;height:0!important}
   @page{size:A4 portrait;margin:5mm}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  svg rect.box-inactive,rect.box-inactive{display:none!important;visibility:hidden!important;opacity:0!important;fill:transparent!important;stroke:transparent!important}
   svg rect,svg line,svg circle,svg path,svg text{color-adjust:exact!important;-webkit-print-color-adjust:exact!important}
-  svg rect[display="none"],svg rect[style*="display: none"],svg rect[style*="display:none"]{display:none!important;visibility:hidden!important}
   body{background:white!important;padding:0!important;margin:0!important;display:block!important;width:200mm!important}
 
   .top-bar,.summary-card,.empty-msg{display:none!important}
@@ -613,8 +609,8 @@ function doPrint(){
           </div>
         </div>` : ''}
         `;
-      const cLR2=bx1.LR!==false?'#dd1111':null, cLY2=bx1.LY!==false?'#f5d800':null;
-      const cRY2=bx1.RY!==false?'#f5d800':null, cRR2=bx1.RR!==false?'#dd1111':null;
+      const cLR2=bx1.LR!==false?'#dd1111':'none', cLY2=bx1.LY!==false?'#f5d800':'none';
+      const cRY2=bx1.RY!==false?'#f5d800':'none', cRR2=bx1.RR!==false?'#dd1111':'none';
       svgHTML=`<svg viewBox="0 0 580 490" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
         <defs>
           <marker id="ar${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="red" stroke-width="1.8"/></marker>
@@ -625,10 +621,7 @@ function doPrint(){
         <text x="210" y="67" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="24" fill="#222">L</text>
         <circle cx="420" cy="58" r="30" stroke="black" stroke-width="3" fill="${mR}"/>
         <text x="420" y="67" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="24" fill="red">R</text>
-        ${cLR2?`<rect x="132" y="295" width="38" height="35" fill="${cLR2}" stroke="#111" stroke-width="2" style="fill:${cLR2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
-        ${cLY2?`<rect x="170" y="295" width="38" height="35" fill="${cLY2}" stroke="#111" stroke-width="2" style="fill:${cLY2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
-        ${cRY2?`<rect x="422" y="295" width="38" height="35" fill="${cRY2}" stroke="#111" stroke-width="2" style="fill:${cRY2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
-        ${cRR2?`<rect x="460" y="295" width="38" height="35" fill="${cRR2}" stroke="#111" stroke-width="2" style="fill:${cRR2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
+
         <line x1="128" y1="20" x2="128" y2="330" stroke="blue" stroke-width="2.5" marker-start="url(#ab${id})" marker-end="url(#ab${id})"/>
         <text x="104" y="190" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="blue" transform="rotate(-90 104 190)">Base Height: ${frac(dv.bh)}</text>
         <line x1="68" y1="20" x2="68" y2="380" stroke="red" stroke-width="2.5" marker-start="url(#ar${id})" marker-end="url(#ar${id})"/>
@@ -664,8 +657,8 @@ function doPrint(){
           ${dv.sqftPrice2?`<div style="display:flex;flex-direction:column;gap:1px"><label style="font-size:11px;font-weight:700;color:#444;text-transform:uppercase">Price/sq ft</label><div style="font-size:13px;font-weight:700;color:#1a2340;padding:2px 4px;background:#eef;border-radius:2px;border:1px solid #99b">Rs. ${Math.round(dv.sqftPrice2).toLocaleString()}/=</div></div>`:''}
         </div>`:''}
         `;
-      const cLO2=bx2.LO!==false?'#ff8c00':null, cLB2=bx2.LB!==false?'#00bfff':null;
-      const cRB2=bx2.RB!==false?'#00bfff':null, cRO2=bx2.RO!==false?'#ff8c00':null;
+      const cLO2=bx2.LO!==false?'#ff8c00':'none', cLB2=bx2.LB!==false?'#00bfff':'none';
+      const cRB2=bx2.RB!==false?'#00bfff':'none', cRO2=bx2.RO!==false?'#ff8c00':'none';
       svgHTML=`<svg viewBox="0 0 580 490" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
         <defs>
           <marker id="atw${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#1a1aff" stroke-width="1.8"/></marker>
@@ -676,10 +669,7 @@ function doPrint(){
         <line x1="315" y1="20" x2="315" y2="100" stroke="#111" stroke-width="3"/>
         <text x="242" y="75" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="46" fill="#1a1aff">${lL}</text>
         <text x="388" y="75" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="46" fill="#cc0000">${rL}</text>
-        ${cLO2?`<rect x="132" y="295" width="38" height="35" fill="${cLO2}" stroke="#111" stroke-width="2" style="fill:${cLO2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
-        ${cLB2?`<rect x="170" y="295" width="38" height="35" fill="${cLB2}" stroke="#111" stroke-width="2" style="fill:${cLB2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
-        ${cRB2?`<rect x="422" y="295" width="38" height="35" fill="${cRB2}" stroke="#111" stroke-width="2" style="fill:${cRB2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
-        ${cRO2?`<rect x="460" y="295" width="38" height="35" fill="${cRO2}" stroke="#111" stroke-width="2" style="fill:${cRO2};-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>`:``}
+
         <line x1="128" y1="20" x2="128" y2="330" stroke="#8b0000" stroke-width="2.5" marker-start="url(#abr${id})" marker-end="url(#abr${id})"/>
         <text x="104" y="190" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#8b0000" transform="rotate(-90 104 190)">BASE HEIGHT: ${frac(dv.bh)}</text>
         <line x1="68" y1="20" x2="68" y2="380" stroke="#1a1aff" stroke-width="2.5" marker-start="url(#atw${id})" marker-end="url(#atw${id})"/>
@@ -709,7 +699,26 @@ function doPrint(){
       // Build HTML color boxes (bypass SVG fill rendering issues)
       const _bs = 'display:inline-block;width:14px;height:14px;border:1.5px solid #333;-webkit-print-color-adjust:exact;print-color-adjust:exact;flex-shrink:0;';
       let boxHTML = '';
-      // boxes are rendered directly in svgFinal SVG rects — no HTML overlay needed
+      if(dv.type==='t1'){
+        const bx1=dv.boxes||{LR:true,LY:true,RY:true,RR:true};
+        // D01 viewBox 580x490, door bottom at y=330 → 67.3% from top → 32.7% from bottom
+        // LR:x=132,LY:x=170 | RY:x=422,RR:x=460  (each w=38)
+        const _b = 'position:absolute;width:7%;height:8%;-webkit-print-color-adjust:exact;print-color-adjust:exact;border:1.5px solid #333;box-sizing:border-box;';
+        boxHTML = ''
+          + (bx1.LR!==false ? '<div style="'+_b+'bottom:31%;left:22.4%;background:#dd1111;"></div>' : '')
+          + (bx1.LY!==false ? '<div style="'+_b+'bottom:31%;left:29%;background:#f5d800;"></div>' : '')
+          + (bx1.RY!==false ? '<div style="'+_b+'bottom:31%;right:20%;background:#f5d800;"></div>' : '')
+          + (bx1.RR!==false ? '<div style="'+_b+'bottom:31%;right:13%;background:#dd1111;"></div>' : '');
+      } else if(dv.type==='t2'){
+        const bx2=dv.boxes||{LO:true,LB:true,RB:true,RO:true};
+        // D02 viewBox 580x490 same positions
+        const _b = 'position:absolute;width:7%;height:8%;-webkit-print-color-adjust:exact;print-color-adjust:exact;border:1.5px solid #333;box-sizing:border-box;';
+        boxHTML = ''
+          + (bx2.LO!==false ? '<div style="'+_b+'bottom:31%;left:22.4%;background:#ff8c00;"></div>' : '')
+          + (bx2.LB!==false ? '<div style="'+_b+'bottom:31%;left:29%;background:#00bfff;"></div>' : '')
+          + (bx2.RB!==false ? '<div style="'+_b+'bottom:31%;right:20%;background:#00bfff;"></div>' : '')
+          + (bx2.RO!==false ? '<div style="'+_b+'bottom:31%;right:13%;background:#ff8c00;"></div>' : '');
+      }
 
       return '<div class="pg1-card card ' + (lCls==='lblwg'?'twg':lCls==='lbl1'?'t1':'t2') + '" style="width:95mm;height:' + cardH + 'mm;box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column;padding:1.5mm 2mm 2mm 2mm;border-radius:4px;border:1.5px solid #ccd;background:white;">'
         + '<div style="flex:0 0 auto;overflow:hidden;margin-bottom:2px;">'
@@ -854,7 +863,6 @@ function doPrint(){
   svg{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
   svg *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
   rect[fill]{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .box-inactive{display:none!important;visibility:hidden!important}
   @page{size:A4 portrait;margin:5mm}
 
   /* watermark */
@@ -1253,8 +1261,8 @@ function wgHTML(id){
 }
 function wgToggle(id,c){
   const d=doors.find(x=>x.id===id);
-  if(c==='red'){d.red=!d.red;document.getElementById('wg-bR-'+id).classList.toggle('active',d.red);['wTL-','wBL-'].forEach(p=>{const el=document.getElementById(p+id);if(d.red){el.classList.remove('box-inactive');el.removeAttribute('display');el.style.display='inline';}else{el.classList.add('box-inactive');el.setAttribute('display','none');el.style.display='none';}});}
-  else{d.blue=!d.blue;document.getElementById('wg-bB-'+id).classList.toggle('active',d.blue);['wTR-','wBR-'].forEach(p=>{const el=document.getElementById(p+id);if(d.blue){el.classList.remove('box-inactive');el.removeAttribute('display');el.style.display='inline';}else{el.classList.add('box-inactive');el.setAttribute('display','none');el.style.display='none';}});}
+  if(c==='red'){d.red=!d.red;document.getElementById('wg-bR-'+id).classList.toggle('active',d.red);const op=d.red?'1':'0.1';['wTL-','wBL-'].forEach(p=>document.getElementById(p+id).setAttribute('fill-opacity',op));}
+  else{d.blue=!d.blue;document.getElementById('wg-bB-'+id).classList.toggle('active',d.blue);const op=d.blue?'1':'0.1';['wTR-','wBR-'].forEach(p=>document.getElementById(p+id).setAttribute('fill-opacity',op));}
 }
 function wgUpdate(id){
   const hEl=document.getElementById('wg-h-'+id);
@@ -1380,25 +1388,7 @@ function d1CalcCost(id){
 function d1Box(id,key){
   const d=doors.find(x=>x.id===id);d.boxes[key]=!d.boxes[key];
   document.getElementById('d1-b'+key+'-'+id).classList.toggle('active',d.boxes[key]);
-  const el=document.getElementById('d1'+key+'-'+id);
-  const colors={'LR':'#dd1111','LY':'#f5d800','RY':'#f5d800','RR':'#dd1111'};
-  if(d.boxes[key]){
-    el.classList.remove('box-inactive');
-    el.removeAttribute('display');
-    el.style.cssText='display:inline';
-    el.setAttribute('fill',colors[key]);
-    el.setAttribute('stroke','#111');
-    el.style.fill=colors[key];
-    el.style.stroke='#111';
-  } else {
-    el.classList.add('box-inactive');
-    el.setAttribute('display','none');
-    el.style.cssText='display:none!important;visibility:hidden;fill:white;stroke:white;opacity:0';
-    el.setAttribute('fill','white');
-    el.setAttribute('stroke','white');
-    el.setAttribute('fill-opacity','0');
-    el.setAttribute('stroke-opacity','0');
-  }
+  document.getElementById('d1'+key+'-'+id).setAttribute('fill-opacity',d.boxes[key]?'1':'0.1');
 }
 function d1Update(id){
   const bhEl=document.getElementById('d1-bh-'+id);
@@ -1480,133 +1470,3 @@ function d2HTML(id){
         <input type="number" id="d2-sqftPrice-${id}" placeholder="Price per sq ft (Rs)" oninput="d2Update(${id})"
           style="flex:1;padding:8px;border-radius:7px;border:2px solid #ccc;font-size:14px;"/>
       </div>
-      <div class="ctrl-row">
-        <span class="ctrl-lbl">Boxes</span>
-        <button class="box-btn orange active" id="d2-bLO-${id}" onclick="d2Box(${id},'LO')">L Org</button>
-        <button class="box-btn sky active" id="d2-bLB-${id}" onclick="d2Box(${id},'LB')">L Blue</button>
-        <button class="box-btn sky active" id="d2-bRB-${id}" onclick="d2Box(${id},'RB')">R Blue</button>
-        <button class="box-btn orange active" id="d2-bRO-${id}" onclick="d2Box(${id},'RO')">R Org</button>
-      </div>
-    </div>
-    <div class="totals">
-      <div class="total-row"><span class="tlabel red">TOTAL H:</span><span class="tval" id="d2-dbh-${id}">45</span><span class="tplus">+</span><span class="tval" id="d2-deh-${id}">39½</span><span class="teq">=</span><span class="tval" id="d2-dth-${id}">84½</span></div>
-      <div class="total-row"><span class="tlabel blue">TOTAL W:</span><span class="tval" id="d2-dbw-${id}">39½</span><span class="tplus">+</span><span class="tval" id="d2-dew-${id}">8½</span><span class="teq">=</span><span class="tval" id="d2-dtw-${id}">48</span></div>
-      <div style="margin-top:8px;background:#f9f9f9;border-radius:8px;padding:8px 10px;border:1px solid #ddd;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-          <span style="font-size:12px;font-weight:700;color:#666;">Covering Cost</span>
-          <span id="d2-tcost-${id}" style="font-size:13px;font-weight:900;color:#1a7a1a;">Rs. 0/=</span>
-        </div>
-        <div style="width:100%;background:#1a2340;border-radius:7px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;">
-          <span style="color:#f5d800;font-size:13px;font-weight:700;">TOTAL COST =</span>
-          <span id="d2-totalCostDisplay-${id}" style="color:#f5d800;font-weight:900;font-size:18px;">Rs. 0/=</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="svg-preview">${d2SVG(id)}</div>
-  </div>`;
-}
-function d2Combo(id,btn,l,r){
-  document.querySelectorAll('#d2-combo-'+id+' .combo-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('d2LL-'+id).textContent=l;
-  document.getElementById('d2RL-'+id).textContent=r;
-}
-function d2Box(id,key){
-  const d=doors.find(x=>x.id===id);d.boxes[key]=!d.boxes[key];
-  document.getElementById('d2-b'+key+'-'+id).classList.toggle('active',d.boxes[key]);
-  const el=document.getElementById('d2'+key+'-'+id);
-  const colors={'LO':'#ff8c00','LB':'#00bfff','RB':'#00bfff','RO':'#ff8c00'};
-  if(d.boxes[key]){
-    el.classList.remove('box-inactive');
-    el.removeAttribute('display');
-    el.style.cssText='display:inline';
-    el.setAttribute('fill',colors[key]);
-    el.setAttribute('stroke','#111');
-    el.style.fill=colors[key];
-    el.style.stroke='#111';
-  } else {
-    el.classList.add('box-inactive');
-    el.setAttribute('display','none');
-    el.style.cssText='display:none!important;visibility:hidden;fill:white;stroke:white;opacity:0';
-    el.setAttribute('fill','white');
-    el.setAttribute('stroke','white');
-    el.setAttribute('fill-opacity','0');
-    el.setAttribute('stroke-opacity','0');
-  }
-}
-function d2Update(id){
-  const bhEl2=document.getElementById('d2-bh-'+id);
-  const ehEl2=document.getElementById('d2-eh-'+id);
-  const bwEl2=document.getElementById('d2-bw-'+id);
-  const ewEl2=document.getElementById('d2-ew-'+id);
-
-  const bh=parseFloat(bhEl2.value)||0;
-  const bw=parseFloat(bwEl2.value)||0;
-  const eh=parseFloat(ehEl2.value)||0;
-  const ew=parseFloat(ewEl2.value)||0;
-  const th=bh+eh,tw=bw+ew;
-  document.getElementById('d2-dbh-'+id).textContent=frac(bh);
-  document.getElementById('d2-deh-'+id).textContent=frac(eh);
-  document.getElementById('d2-dth-'+id).textContent=frac(th);
-  document.getElementById('d2-dbw-'+id).textContent=frac(bw);
-  document.getElementById('d2-dew-'+id).textContent=frac(ew);
-  document.getElementById('d2-dtw-'+id).textContent=frac(tw);
-  document.getElementById('d2svgBH-'+id).textContent='BASE HEIGHT: '+frac(bh);
-  document.getElementById('d2svgTH-'+id).textContent='Total H: '+frac(th);
-  document.getElementById('d2svgBW-'+id).textContent='BASE WIDTH: '+frac(bw);
-  document.getElementById('d2svgTW-'+id).textContent='Total W: '+frac(tw);
-  if(document.getElementById('d2svgArea-'+id)) document.getElementById('d2svgArea-'+id).textContent=(th*tw/144).toFixed(2)+' sq ft';
-
-  // Covering Cost = Price per running ft × Total Width (in ft)
-  const priceEl   = document.getElementById('d2-price-'+id);
-  const tcostEl   = document.getElementById('d2-tcost-'+id);
-  const sqftPriceEl = document.getElementById('d2-sqftPrice-'+id);
-  const totalCostEl = document.getElementById('d2-totalCostDisplay-'+id);
-
-  if(priceEl && tcostEl){
-    const price = parseFloat(priceEl.value)||0;
-    const coveringCost = price * (tw / 12);
-    tcostEl.textContent = 'Rs. ' + Math.round(coveringCost).toLocaleString() + '/=';
-
-    // Total Cost = Covering Cost + (area × sqft price) with min 50 sq ft rule
-    if(sqftPriceEl && totalCostEl){
-      const sqftPrice = parseFloat(sqftPriceEl.value)||0;
-      const area = Math.round((th * tw) / 144 * 100) / 100;
-      const billableArea = area < 50 ? 50 : area;
-      const totalCost = coveringCost + (billableArea * sqftPrice);
-      totalCostEl.textContent = 'Rs. ' + Math.round(totalCost).toLocaleString() + '/=';
-      // Save to door object
-      const d = doors.find(x=>x.id===id);
-      if(d){
-        d.coveringCost = coveringCost;
-        d.sqftPrice2   = sqftPrice;
-        d.totalCost    = totalCost;
-      }
-    }
-  }
-
-  // Update SVG combo labels based on selected type
-  const comboSel = document.getElementById('d2-combo-'+id);
-  const combo = comboSel ? comboSel.value : 'L/C';
-  const parts = combo.split('/');
-  const leftLbl  = parts[0] || 'L';
-  const rightLbl = parts[1] || 'C';
-
-  // Color mapping
-  const colorMap = {'L':'#1a1aff','U':'#1a1aff','F':'#cc0000','B':'#cc0000','C':'#cc0000'};
-  const lColor = colorMap[leftLbl] || '#1a1aff';
-  const rColor = colorMap[rightLbl] || '#cc0000';
-
-  const llEl = document.getElementById('d2LL-'+id);
-  const rlEl = document.getElementById('d2RL-'+id);
-  if(llEl){ llEl.textContent = leftLbl;  llEl.setAttribute('fill', lColor); }
-  if(rlEl){ rlEl.textContent = rightLbl; rlEl.setAttribute('fill', rColor); }
-
-  // F/F: hide divider line; others: show
-  const divider = document.getElementById('d2div-'+id);
-  if(divider){ divider.style.display = combo==='F/F' ? 'none' : ''; }
-}
-</script>
-</body>
-</html>
