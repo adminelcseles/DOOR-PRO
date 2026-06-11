@@ -123,6 +123,7 @@ body{font-family:Arial,sans-serif;background:#eef2f7;min-height:100vh;padding:14
   @page{size:A4 portrait;margin:5mm}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   svg rect,svg line,svg circle,svg path,svg text{color-adjust:exact!important;-webkit-print-color-adjust:exact!important}
+  svg rect[display="none"],svg rect[style*="display: none"],svg rect[style*="display:none"]{display:none!important;visibility:hidden!important}
   body{background:white!important;padding:0!important;margin:0!important;display:block!important;width:200mm!important}
 
   .top-bar,.summary-card,.empty-msg{display:none!important}
@@ -1248,8 +1249,8 @@ function wgHTML(id){
 }
 function wgToggle(id,c){
   const d=doors.find(x=>x.id===id);
-  if(c==='red'){d.red=!d.red;document.getElementById('wg-bR-'+id).classList.toggle('active',d.red);const op=d.red?'1':'0';['wTL-','wBL-'].forEach(p=>{document.getElementById(p+id).setAttribute('fill-opacity',op);document.getElementById(p+id).setAttribute('stroke-opacity',op);});}
-  else{d.blue=!d.blue;document.getElementById('wg-bB-'+id).classList.toggle('active',d.blue);const op=d.blue?'1':'0';['wTR-','wBR-'].forEach(p=>{document.getElementById(p+id).setAttribute('fill-opacity',op);document.getElementById(p+id).setAttribute('stroke-opacity',op);});}
+  if(c==='red'){d.red=!d.red;document.getElementById('wg-bR-'+id).classList.toggle('active',d.red);['wTL-','wBL-'].forEach(p=>{const el=document.getElementById(p+id);el.setAttribute('display',d.red?'inline':'none');el.style.display=d.red?'inline':'none';});}
+  else{d.blue=!d.blue;document.getElementById('wg-bB-'+id).classList.toggle('active',d.blue);['wTR-','wBR-'].forEach(p=>{const el=document.getElementById(p+id);el.setAttribute('display',d.blue?'inline':'none');el.style.display=d.blue?'inline':'none';});}
 }
 function wgUpdate(id){
   const hEl=document.getElementById('wg-h-'+id);
@@ -1375,8 +1376,9 @@ function d1CalcCost(id){
 function d1Box(id,key){
   const d=doors.find(x=>x.id===id);d.boxes[key]=!d.boxes[key];
   document.getElementById('d1-b'+key+'-'+id).classList.toggle('active',d.boxes[key]);
-  document.getElementById('d1'+key+'-'+id).setAttribute('fill-opacity',d.boxes[key]?'1':'0');
-  document.getElementById('d1'+key+'-'+id).setAttribute('stroke-opacity',d.boxes[key]?'1':'0');
+  const el=document.getElementById('d1'+key+'-'+id);
+  el.setAttribute('display',d.boxes[key]?'inline':'none');
+  el.style.display=d.boxes[key]?'inline':'none';
 }
 function d1Update(id){
   const bhEl=document.getElementById('d1-bh-'+id);
@@ -1493,8 +1495,9 @@ function d2Combo(id,btn,l,r){
 function d2Box(id,key){
   const d=doors.find(x=>x.id===id);d.boxes[key]=!d.boxes[key];
   document.getElementById('d2-b'+key+'-'+id).classList.toggle('active',d.boxes[key]);
-  document.getElementById('d2'+key+'-'+id).setAttribute('fill-opacity',d.boxes[key]?'1':'0');
-  document.getElementById('d2'+key+'-'+id).setAttribute('stroke-opacity',d.boxes[key]?'1':'0');
+  const el=document.getElementById('d2'+key+'-'+id);
+  el.setAttribute('display',d.boxes[key]?'inline':'none');
+  el.style.display=d.boxes[key]?'inline':'none';
 }
 function d2Update(id){
   const bhEl2=document.getElementById('d2-bh-'+id);
