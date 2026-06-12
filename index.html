@@ -609,8 +609,8 @@ function doPrint(){
           </div>
         </div>` : ''}
         `;
-      const cLR2=bx1.LR!==false?'#dd1111':'none', cLY2=bx1.LY!==false?'#f5d800':'none';
-      const cRY2=bx1.RY!==false?'#f5d800':'none', cRR2=bx1.RR!==false?'#dd1111':'none';
+      const cLR2=bx1.LR!==false?'#dd1111':'white', cLY2=bx1.LY!==false?'#f5d800':'white';
+      const cRY2=bx1.RY!==false?'#f5d800':'white', cRR2=bx1.RR!==false?'#dd1111':'white';
       svgHTML=`<svg viewBox="0 0 580 490" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
         <defs>
           <marker id="ar${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="red" stroke-width="1.8"/></marker>
@@ -657,8 +657,8 @@ function doPrint(){
           ${dv.sqftPrice2?`<div style="display:flex;flex-direction:column;gap:1px"><label style="font-size:11px;font-weight:700;color:#444;text-transform:uppercase">Price/sq ft</label><div style="font-size:13px;font-weight:700;color:#1a2340;padding:2px 4px;background:#eef;border-radius:2px;border:1px solid #99b">Rs. ${Math.round(dv.sqftPrice2).toLocaleString()}/=</div></div>`:''}
         </div>`:''}
         `;
-      const cLO2=bx2.LO!==false?'#ff8c00':'none', cLB2=bx2.LB!==false?'#00bfff':'none';
-      const cRB2=bx2.RB!==false?'#00bfff':'none', cRO2=bx2.RO!==false?'#ff8c00':'none';
+      const cLO2=bx2.LO!==false?'#ff8c00':'white', cLB2=bx2.LB!==false?'#00bfff':'white';
+      const cRB2=bx2.RB!==false?'#00bfff':'white', cRO2=bx2.RO!==false?'#ff8c00':'white';
       svgHTML=`<svg viewBox="0 0 580 490" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact;">
         <defs>
           <marker id="atw${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#1a1aff" stroke-width="1.8"/></marker>
@@ -1254,12 +1254,6 @@ function wgHTML(id){
     <div class="totals">
       <div class="total-row"><span class="tlabel dk">HEIGHT:</span><span class="tval" id="wg-oh-${id}">84 1/2</span></div>
       <div class="total-row"><span class="tlabel dk">WIDTH:</span><span class="tval" id="wg-ow-${id}">39 1/2</span></div>
-      <div style="margin-top:6px;background:#1a2340;border-radius:7px;padding:6px 10px;display:flex;align-items:center;gap:8px;">
-        <span style="color:#f5d800;font-size:13px;font-weight:700;white-space:nowrap;">TOTAL COST =</span>
-        <input type="number" id="wg-totalCost-${id}" placeholder="0" step="100"
-          style="flex:1;padding:4px 8px;font-size:15px;font-weight:900;border-radius:5px;border:none;background:#f5d800;color:#1a2340;text-align:right;min-width:0;"
-          oninput="const d=doors.find(x=>x.id===${id});if(d)d.totalCost=parseFloat(this.value)||0;"/>
-      </div>
     </div>
   </div>
   <div class="svg-preview">${wgSVG(id)}</div>
@@ -1466,3 +1460,125 @@ function d2HTML(id){
           <option value="F/F">F/F</option>
           <option value="U/C">U/C</option>
           <option value="F/C">F/C</option>
+        </select>
+        <span class="ctrl-lbl" style="min-width:auto;">Price per running ft (Rs)</span>
+        <input type="number" id="d2-price-${id}" placeholder="0" step="100"
+          style="width:90px;padding:5px 7px;font-size:13px;font-weight:700;border-radius:6px;border:2px solid #cc000066;color:#1a2340;"
+          oninput="d2Update(${id})"/>
+      </div>
+      <div class="ctrl-row" style="margin-top:4px;gap:6px;">
+        <input type="number" id="d2-sqftPrice-${id}" placeholder="Price per sq ft (Rs)" oninput="d2Update(${id})"
+          style="flex:1;padding:8px;border-radius:7px;border:2px solid #ccc;font-size:14px;"/>
+      </div>
+      <div class="ctrl-row">
+        <span class="ctrl-lbl">Boxes</span>
+        <button class="box-btn orange active" id="d2-bLO-${id}" onclick="d2Box(${id},'LO')">L Org</button>
+        <button class="box-btn sky active" id="d2-bLB-${id}" onclick="d2Box(${id},'LB')">L Blue</button>
+        <button class="box-btn sky active" id="d2-bRB-${id}" onclick="d2Box(${id},'RB')">R Blue</button>
+        <button class="box-btn orange active" id="d2-bRO-${id}" onclick="d2Box(${id},'RO')">R Org</button>
+      </div>
+    </div>
+    <div class="totals">
+      <div class="total-row"><span class="tlabel red">TOTAL H:</span><span class="tval" id="d2-dbh-${id}">45</span><span class="tplus">+</span><span class="tval" id="d2-deh-${id}">39½</span><span class="teq">=</span><span class="tval" id="d2-dth-${id}">84½</span></div>
+      <div class="total-row"><span class="tlabel blue">TOTAL W:</span><span class="tval" id="d2-dbw-${id}">39½</span><span class="tplus">+</span><span class="tval" id="d2-dew-${id}">8½</span><span class="teq">=</span><span class="tval" id="d2-dtw-${id}">48</span></div>
+      <div style="margin-top:8px;background:#f9f9f9;border-radius:8px;padding:8px 10px;border:1px solid #ddd;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:12px;font-weight:700;color:#666;">Covering Cost</span>
+          <span id="d2-tcost-${id}" style="font-size:13px;font-weight:900;color:#1a7a1a;">Rs. 0/=</span>
+        </div>
+        <div style="width:100%;background:#1a2340;border-radius:7px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#f5d800;font-size:13px;font-weight:700;">TOTAL COST =</span>
+          <span id="d2-totalCostDisplay-${id}" style="color:#f5d800;font-weight:900;font-size:18px;">Rs. 0/=</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="svg-preview">${d2SVG(id)}</div>
+  </div>`;
+}
+function d2Combo(id,btn,l,r){
+  document.querySelectorAll('#d2-combo-'+id+' .combo-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('d2LL-'+id).textContent=l;
+  document.getElementById('d2RL-'+id).textContent=r;
+}
+function d2Box(id,key){
+  const d=doors.find(x=>x.id===id);d.boxes[key]=!d.boxes[key];
+  document.getElementById('d2-b'+key+'-'+id).classList.toggle('active',d.boxes[key]);
+  document.getElementById('d2'+key+'-'+id).setAttribute('fill-opacity',d.boxes[key]?'1':'0.1');
+}
+function d2Update(id){
+  const bhEl2=document.getElementById('d2-bh-'+id);
+  const ehEl2=document.getElementById('d2-eh-'+id);
+  const bwEl2=document.getElementById('d2-bw-'+id);
+  const ewEl2=document.getElementById('d2-ew-'+id);
+
+  const bh=parseFloat(bhEl2.value)||0;
+  const bw=parseFloat(bwEl2.value)||0;
+  const eh=parseFloat(ehEl2.value)||0;
+  const ew=parseFloat(ewEl2.value)||0;
+  const th=bh+eh,tw=bw+ew;
+  document.getElementById('d2-dbh-'+id).textContent=frac(bh);
+  document.getElementById('d2-deh-'+id).textContent=frac(eh);
+  document.getElementById('d2-dth-'+id).textContent=frac(th);
+  document.getElementById('d2-dbw-'+id).textContent=frac(bw);
+  document.getElementById('d2-dew-'+id).textContent=frac(ew);
+  document.getElementById('d2-dtw-'+id).textContent=frac(tw);
+  document.getElementById('d2svgBH-'+id).textContent='BASE HEIGHT: '+frac(bh);
+  document.getElementById('d2svgTH-'+id).textContent='Total H: '+frac(th);
+  document.getElementById('d2svgBW-'+id).textContent='BASE WIDTH: '+frac(bw);
+  document.getElementById('d2svgTW-'+id).textContent='Total W: '+frac(tw);
+  if(document.getElementById('d2svgArea-'+id)) document.getElementById('d2svgArea-'+id).textContent=(th*tw/144).toFixed(2)+' sq ft';
+
+  // Covering Cost = Price per running ft × Total Width (in ft)
+  const priceEl   = document.getElementById('d2-price-'+id);
+  const tcostEl   = document.getElementById('d2-tcost-'+id);
+  const sqftPriceEl = document.getElementById('d2-sqftPrice-'+id);
+  const totalCostEl = document.getElementById('d2-totalCostDisplay-'+id);
+
+  if(priceEl && tcostEl){
+    const price = parseFloat(priceEl.value)||0;
+    const coveringCost = price * (tw / 12);
+    tcostEl.textContent = 'Rs. ' + Math.round(coveringCost).toLocaleString() + '/=';
+
+    // Total Cost = Covering Cost + (area × sqft price) with min 50 sq ft rule
+    if(sqftPriceEl && totalCostEl){
+      const sqftPrice = parseFloat(sqftPriceEl.value)||0;
+      const area = Math.round((th * tw) / 144 * 100) / 100;
+      const billableArea = area < 50 ? 50 : area;
+      const totalCost = coveringCost + (billableArea * sqftPrice);
+      totalCostEl.textContent = 'Rs. ' + Math.round(totalCost).toLocaleString() + '/=';
+      // Save to door object
+      const d = doors.find(x=>x.id===id);
+      if(d){
+        d.coveringCost = coveringCost;
+        d.sqftPrice2   = sqftPrice;
+        d.totalCost    = totalCost;
+      }
+    }
+  }
+
+  // Update SVG combo labels based on selected type
+  const comboSel = document.getElementById('d2-combo-'+id);
+  const combo = comboSel ? comboSel.value : 'L/C';
+  const parts = combo.split('/');
+  const leftLbl  = parts[0] || 'L';
+  const rightLbl = parts[1] || 'C';
+
+  // Color mapping
+  const colorMap = {'L':'#1a1aff','U':'#1a1aff','F':'#cc0000','B':'#cc0000','C':'#cc0000'};
+  const lColor = colorMap[leftLbl] || '#1a1aff';
+  const rColor = colorMap[rightLbl] || '#cc0000';
+
+  const llEl = document.getElementById('d2LL-'+id);
+  const rlEl = document.getElementById('d2RL-'+id);
+  if(llEl){ llEl.textContent = leftLbl;  llEl.setAttribute('fill', lColor); }
+  if(rlEl){ rlEl.textContent = rightLbl; rlEl.setAttribute('fill', rColor); }
+
+  // F/F: hide divider line; others: show
+  const divider = document.getElementById('d2div-'+id);
+  if(divider){ divider.style.display = combo==='F/F' ? 'none' : ''; }
+}
+</script>
+</body>
+</html>
