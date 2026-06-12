@@ -1261,8 +1261,8 @@ function wgHTML(id){
 }
 function wgToggle(id,c){
   const d=doors.find(x=>x.id===id);
-  if(c==='red'){d.red=!d.red;document.getElementById('wg-bR-'+id).classList.toggle('active',d.red);const op=d.red?'1':'0.1';['wTL-','wBL-'].forEach(p=>document.getElementById(p+id).setAttribute('fill-opacity',op));}
-  else{d.blue=!d.blue;document.getElementById('wg-bB-'+id).classList.toggle('active',d.blue);const op=d.blue?'1':'0.1';['wTR-','wBR-'].forEach(p=>document.getElementById(p+id).setAttribute('fill-opacity',op));}
+  if(c==='red'){d.red=!d.red;document.getElementById('wg-bR-'+id).classList.toggle('active',d.red);['wTL-','wBL-'].forEach(p=>{const e=document.getElementById(p+id);e.setAttribute('fill',d.red?'#dd1111':'white');e.setAttribute('fill-opacity','1');e.style.fill=d.red?'#dd1111':'white';});}
+  else{d.blue=!d.blue;document.getElementById('wg-bB-'+id).classList.toggle('active',d.blue);['wTR-','wBR-'].forEach(p=>{const e=document.getElementById(p+id);e.setAttribute('fill',d.blue?'#2244cc':'white');e.setAttribute('fill-opacity','1');e.style.fill=d.blue?'#2244cc':'white';});}
 }
 function wgUpdate(id){
   const hEl=document.getElementById('wg-h-'+id);
@@ -1388,7 +1388,11 @@ function d1CalcCost(id){
 function d1Box(id,key){
   const d=doors.find(x=>x.id===id);d.boxes[key]=!d.boxes[key];
   document.getElementById('d1-b'+key+'-'+id).classList.toggle('active',d.boxes[key]);
-  document.getElementById('d1'+key+'-'+id).setAttribute('fill-opacity',d.boxes[key]?'1':'0.1');
+  const activeColors={LR:'#dd1111',LY:'#f5d800',RY:'#f5d800',RR:'#dd1111'};
+  const el=document.getElementById('d1'+key+'-'+id);
+  el.setAttribute('fill',d.boxes[key]?activeColors[key]:'white');
+  el.setAttribute('fill-opacity','1');
+  el.style.fill=d.boxes[key]?activeColors[key]:'white';
 }
 function d1Update(id){
   const bhEl=document.getElementById('d1-bh-'+id);
@@ -1505,7 +1509,11 @@ function d2Combo(id,btn,l,r){
 function d2Box(id,key){
   const d=doors.find(x=>x.id===id);d.boxes[key]=!d.boxes[key];
   document.getElementById('d2-b'+key+'-'+id).classList.toggle('active',d.boxes[key]);
-  document.getElementById('d2'+key+'-'+id).setAttribute('fill-opacity',d.boxes[key]?'1':'0.1');
+  const activeColors2={LO:'#ff8c00',LB:'#00bfff',RB:'#00bfff',RO:'#ff8c00'};
+  const el2=document.getElementById('d2'+key+'-'+id);
+  el2.setAttribute('fill',d.boxes[key]?activeColors2[key]:'white');
+  el2.setAttribute('fill-opacity','1');
+  el2.style.fill=d.boxes[key]?activeColors2[key]:'white';
 }
 function d2Update(id){
   const bhEl2=document.getElementById('d2-bh-'+id);
