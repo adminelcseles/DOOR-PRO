@@ -1249,8 +1249,9 @@ function wgSVG(id){
   </svg>`;
 }
 function wgHTML(id){
-  return hdr(id,'wg')+`<div class="door-inner">
-  <div class="door-inputs">
+  return hdr(id,'wg')+`<div class="door-inner" style="display:flex;flex-direction:column;gap:10px;">
+  <div class="svg-preview" style="width:100%;">${wgSVG(id)}</div>
+  <div class="door-inputs" style="width:100%;">
     <div class="inputs-grid">
       <div class="finput"><label>Height</label><input type="number" id="wg-h-${id}" value="" step="0.5" oninput="wgUpdate(${id})"/></div>
       <div class="finput"><label>Width</label><input type="number" id="wg-w-${id}" value="" step="0.5" oninput="wgUpdate(${id})"/></div>
@@ -1262,7 +1263,7 @@ function wgHTML(id){
         <button class="tog-btn blue-btn active" id="wg-bB-${id}" onclick="wgToggle(${id},'blue')">BLUE</button>
       </div>
     </div>
-    <div class="totals">
+    <div class="totals" style="overflow:visible;">
       <div class="total-row"><span class="tlabel dk">HEIGHT:</span><span class="tval" id="wg-oh-${id}">84 1/2</span></div>
       <div class="total-row"><span class="tlabel dk">WIDTH:</span><span class="tval" id="wg-ow-${id}">39 1/2</span></div>
       <div style="margin-top:6px;">
@@ -1277,7 +1278,6 @@ function wgHTML(id){
       </div>
     </div>
   </div>
-  <div class="svg-preview">${wgSVG(id)}</div>
   </div>`;
 }
 function wgToggle(id,c){
