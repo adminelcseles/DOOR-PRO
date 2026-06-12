@@ -589,8 +589,6 @@ function doPrint(){
       const mL=dv.motor==='Left'?'#f5d800':'white';
       const mR=dv.motor==='Right'?'#f5d800':'white';
       const bx1=dv.boxes||{LR:true,LY:true,RY:true,RR:true};
-      const oLR=bx1.LR!==false?'1':'0.15', oLY=bx1.LY!==false?'1':'0.15';
-      const oRY=bx1.RY!==false?'1':'0.15', oRR=bx1.RR!==false?'1':'0.15';
       topHTML=`
         <div class="ig">
           <div class="fi"><label>Base Height</label><input value="${dv.bh}" readonly/></div>
@@ -632,10 +630,10 @@ function doPrint(){
         <line x1="68" y1="410" x2="500" y2="410" stroke="red" stroke-width="2.5" marker-start="url(#ar${id})" marker-end="url(#ar${id})"/>
         <text x="315" y="445" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="22" fill="red">Total W: ${frac(tw)}</text>
         <text x="315" y="205" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="34" fill="#999">${(th*tw/144).toFixed(2)} sq ft</text>
-        <rect x="126" y="286" width="44" height="44" fill="#dd1111" fill-opacity="${oLR}" stroke="#333" stroke-width="2"/>
-        <rect x="170" y="286" width="44" height="44" fill="#f5d800" fill-opacity="${oLY}" stroke="#333" stroke-width="2"/>
-        <rect x="416" y="286" width="44" height="44" fill="#f5d800" fill-opacity="${oRY}" stroke="#333" stroke-width="2"/>
-        <rect x="460" y="286" width="44" height="44" fill="#dd1111" fill-opacity="${oRR}" stroke="#333" stroke-width="2"/>
+        <rect x="126" y="286" width="44" height="44" fill="${cLR2}" stroke="#333" stroke-width="2"/>
+        <rect x="170" y="286" width="44" height="44" fill="${cLY2}" stroke="#333" stroke-width="2"/>
+        <rect x="416" y="286" width="44" height="44" fill="${cRY2}" stroke="#333" stroke-width="2"/>
+        <rect x="460" y="286" width="44" height="44" fill="${cRR2}" stroke="#333" stroke-width="2"/>
       </svg>`;
 
     } else {
@@ -643,8 +641,6 @@ function doPrint(){
       const th=dv.bh+dv.eh, tw=dv.bw+dv.ew;
       const [lL,rL]=dv.combo.split('/');
       const bx2=dv.boxes||{LO:true,LB:true,RB:true,RO:true};
-      const oLO=bx2.LO!==false?'1':'0.15', oLB=bx2.LB!==false?'1':'0.15';
-      const oRB=bx2.RB!==false?'1':'0.15', oRO=bx2.RO!==false?'1':'0.15';
       topHTML=`
         <div class="ig">
           <div class="fi"><label>Base Height</label><input value="${dv.bh}" readonly/></div>
@@ -684,10 +680,10 @@ function doPrint(){
         <line x1="68" y1="410" x2="500" y2="410" stroke="#1a1aff" stroke-width="2.5" marker-start="url(#atw${id})" marker-end="url(#atw${id})"/>
         <text x="315" y="445" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#1a1aff">Total W: ${frac(tw)}</text>
         <text x="315" y="220" text-anchor="middle" font-family="Arial" font-size="34" font-weight="bold" fill="#999">${(th*tw/144).toFixed(2)} sq ft</text>
-        <rect x="126" y="286" width="44" height="44" fill="#ff8c00" fill-opacity="${oLO}" stroke="#333" stroke-width="2"/>
-        <rect x="170" y="286" width="44" height="44" fill="#00bfff" fill-opacity="${oLB}" stroke="#333" stroke-width="2"/>
-        <rect x="416" y="286" width="44" height="44" fill="#00bfff" fill-opacity="${oRB}" stroke="#333" stroke-width="2"/>
-        <rect x="460" y="286" width="44" height="44" fill="#ff8c00" fill-opacity="${oRO}" stroke="#333" stroke-width="2"/>
+        <rect x="126" y="286" width="44" height="44" fill="${cLO2}" stroke="#333" stroke-width="2"/>
+        <rect x="170" y="286" width="44" height="44" fill="${cLB2}" stroke="#333" stroke-width="2"/>
+        <rect x="416" y="286" width="44" height="44" fill="${cRB2}" stroke="#333" stroke-width="2"/>
+        <rect x="460" y="286" width="44" height="44" fill="${cRO2}" stroke="#333" stroke-width="2"/>
       </svg>`;
     }
 
