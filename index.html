@@ -1104,10 +1104,21 @@ function doPrint(){
   `;
 
   const pw=window.open('','_blank','width=900,height=700');
-  pw.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="color-scheme" content="light only"><style>*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}${css}</style></head><body>${body}</body></html>`);
+  pw.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="color-scheme" content="light only"><style>*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}${css}</style><script>
+    function triggerPrint(){
+      window.focus();
+      window.print();
+    }
+    window.onload=function(){
+      // Wait for all images/fonts to render
+      setTimeout(triggerPrint, 600);
+    };
+    window.onafterprint=function(){
+      // Keep window open so user can re-print if needed
+    };
+  <\/script></head><body>${body}</body></html>`);
   pw.document.close();
   pw.focus();
-  setTimeout(()=>{pw.print();},800);
 
   // Auto-save to Google Sheet
   saveToSheet(custName, custWhatsapp, custAddress, orderNum, orderDate,
